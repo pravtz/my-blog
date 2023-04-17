@@ -1,6 +1,7 @@
 {
   "short_name": "Blog Pravtz",
   "name": "Blog Ederson Pravtz",
+  "description": "Blog e página pessoal de Ederson Pravtz",
   "icons": [
     {
       "src": "favicon.ico",

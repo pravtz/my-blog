@@ -9,7 +9,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
         <meta charSet="utf-8" />
         <meta property="og:title" content="My Blog" key="title" />
         <meta name='description' content='Blog e página pessoal de Ederson Pravtz' />
-        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <link rel="manifest" href="manifest.json" />
         <meta
           property='og:description'
           content='Blog e página pessoal de Ederson Pravtz'
