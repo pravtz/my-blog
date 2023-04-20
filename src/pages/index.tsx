@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import { FaBars } from 'react-icons/fa'
 import { IoLanguage } from 'react-icons/io5'
 import { MainLayout } from '@/layouts/main.layout'
+import { ButtonIcon } from '@/components/ButtonIcon'
+import { SolcialMedia } from '@/components/SocialMedia'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +21,8 @@ export default function Home() {
                   <IoLanguage size='24px' />
                 </div>
               </button>
-              <FaBars size={'32px'} />
+             
+              <ButtonIcon icon={FaBars} colorIcon='white' sizeIcon='32px' onClick={()=> alert("testando")}/>
             </div>
           </div>
         </header>
@@ -34,6 +37,9 @@ export default function Home() {
               <p className='text-md'>Olá, Bem vindo! Meu nome é</p>
               <h1 className='text-[52px]'><span className=' font-bold'>Ederson </span>Pravtz</h1>
               <p className=' text-2xl'>Sou desenvolvedor de sistemas web</p>
+            </div>
+            <div className='py-4'>
+              <SolcialMedia />
             </div>
           </div>
         </div>
