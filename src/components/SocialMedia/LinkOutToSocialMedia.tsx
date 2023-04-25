@@ -9,7 +9,7 @@ type LinkOutToSocialMediaType = {
 
 export const LinkOutToSocialMedia = ({name, url, children}: LinkOutToSocialMediaType) => {
   return (
-    <Link target="_blank" id={`link-${name}`} href={url} passHref>
+    <Link target="_blank" role='link' id={`link-${name}`} href={url} passHref>
       {children}
     </Link>
   )
