@@ -1,5 +1,4 @@
 import { Inter } from "next/font/google";
-import { MainLayout } from "@/layouts/main.layout";
 import { ProfileCover } from "@/components/ProfileCover";
 import { ButtonIcon } from "@/components/ButtonIcon";
 import { BsChevronDoubleDown } from "react-icons/bs";
@@ -10,10 +9,15 @@ import clsx from 'clsx'
 
 const inter = Inter({ subsets: ["latin"], weight: ['200'] });
 
-export default function Home() {
+export const metadata = {
+  title: 'My Page Title',
+};
+
+export default function Page() {
+
+
   return (
-    <MainLayout>
-      <div className="relative bg-main-bg">
+    <div className="relative bg-main-bg">
         <div className=" bg-gradient-bg-top absolute top-0 h-screen w-screen z-auto " />
         <header className=" w-full ">
           <div className="bg-[#7D7C79] opacity-[0.18] w-full h-[200px] " />
@@ -45,7 +49,9 @@ export default function Home() {
             className=" w-full h-[500px]"
           >
             <div className="flex flex-col items-center">
-              <h2 className={clsx(inter.className, "py-4 text-center text-[42px] sm:text-[48px] leading-5 text-[#bbb] ")}>Meus Projetos</h2>
+              <h2 className={clsx(
+                inter.className,
+                "py-4 text-center text-[42px] sm:text-[48px] leading-5 text-[#bbb] ")}>Meus Projetos</h2>
               <Image src={Line} width={340} alt="line" />
             </div>
 
@@ -62,6 +68,5 @@ export default function Home() {
           </section>
         </main>
       </div>
-    </MainLayout>
-  );
+  )
 }
