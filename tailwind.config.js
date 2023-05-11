@@ -7,7 +7,17 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)']
+      },
+      colors: {
+        'basic': '#bbbbbb',
+        'basic-easy': '#848484',
+        'primary': '#59834a',
+      },
+
       backgroundImage: {
 
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
