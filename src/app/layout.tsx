@@ -5,13 +5,6 @@ import AnalyticsGoogle from '@/components/AnalyticsGoogle';
 import { Inter } from 'next/font/google';
 import clsx from 'clsx';
 
-
-
-export const metadata = {
-  title: 'Home',
-  description: 'Blog e página pessoal de Ederson Pravtz',
-
-};
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
@@ -28,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={clsx('scroll-smooth', inter.variable)}>
 
-      <body className='relative min-h-full'>{children}
+      <body className='relative '>{children}
         <Analytics />
         <AnalyticsGoogle />
       </body>

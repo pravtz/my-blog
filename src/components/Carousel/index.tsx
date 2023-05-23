@@ -30,18 +30,18 @@ export const Carousel = ({ children, ...options }: Props) => {
   const canScrollPrev = !emblaApi?.canScrollPrev();
   const canScrollNext = !emblaApi?.canScrollNext();
   return (
-    <div className=" w-[calc(100%-64px)] m-auto ">
+    <div className=" w-[calc(100%-64px)] my-4 m-auto ">
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">{children}</div>
+        <div className="flex flex-row touch-pan-y h-auto ml-[calc(2rem*-1)]">{children}</div>
       </div>
-      <div className="mt-8">
+      {/* <div className="mt-8">
         <Dots itemsLength={length} selectedIndex={selectedIndex} />
-      </div>
+      </div> */}
 
       <button
         onClick={() => emblaApi?.scrollPrev()}
         disabled={canScrollPrev}
-        className={clsx({ "absolute left-0 top-[45%]": true, 'opacity-30': canScrollPrev })}
+        className={clsx({ "absolute left-0 top-[35%]": true, 'opacity-30': canScrollPrev })}
       >
         <MdOutlineArrowBackIos size={32} color="#BBBBBB" />
       </button>
@@ -49,7 +49,7 @@ export const Carousel = ({ children, ...options }: Props) => {
       <button
         onClick={() => emblaApi?.scrollNext()}
         disabled={canScrollNext}
-        className={clsx({ "absolute right-0 top-[45%] ": true, 'opacity-30': canScrollNext })}
+        className={clsx({ "absolute right-0 top-[35%] ": true, 'opacity-30': canScrollNext })}
       >
         <MdArrowForwardIos size={32} color="#BBBBBB" />
       </button>
