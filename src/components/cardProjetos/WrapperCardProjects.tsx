@@ -2,6 +2,8 @@
 import { CardProjetos } from '.'
 import { Carousel } from '../Carousel'
 import { CardProps } from '.'
+import Balancer from "react-wrap-balancer";
+
 
 
 type WrapperCardProjectsProps = {
@@ -11,7 +13,7 @@ export const WrapperCardProjects = ({ data }: WrapperCardProjectsProps) => {
   return (
     < div className='container relative m-auto w-full h-[350px] ' >
       <Carousel slidesToScroll='auto' containScroll='trimSnaps' loop>
-        {data.map((item, index) => {
+        {data.length != 0 ? data.map((item, index) => {
           return (
             <div
               key={index}
@@ -28,7 +30,18 @@ export const WrapperCardProjects = ({ data }: WrapperCardProjectsProps) => {
               />
             </div>
           )
-        })}
+        }) 
+      :     <div className="p-4 w-full">
+              <div className=" flex items-center justify-center border-2 border-dashed border-[#444] opacity-30 rounded-xl p-4 h-[350px] w-full">
+                <h3 className="text-4xl p-8 text-center text-slate-500">
+                  <Balancer>
+                    Em breve teremos muitos projetos aqui!☺️
+                  </Balancer>
+                </h3>
+              </div>
+            </div>
+      
+      }
       </Carousel>
 
 

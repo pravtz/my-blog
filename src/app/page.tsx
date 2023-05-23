@@ -20,7 +20,8 @@ export const metadata: Metadata = {
 
 export default function Page() {
 
-  const data = [
+  const data: any = []
+  const data1 = [
     {
       id: 'a001',
       title: 'My blog 1',
@@ -141,16 +142,6 @@ export default function Page() {
         >
           <TitleMain title="Meus Projetos" />
           <WrapperCardProjects data={data} />
-
-          {/* <article className="p-4">
-              <div className=" flex items-center justify-center border-2 border-dashed border-[#444] opacity-30 rounded-xl p-4 h-[400px]">
-                <h3 className="text-4xl p-8 text-center text-slate-500">
-                  <Balancer>
-                    Soon my projects will be here
-                  </Balancer>
-                </h3>
-              </div>
-            </article> */}
         </section>
 
       </main>
