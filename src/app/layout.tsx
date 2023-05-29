@@ -4,6 +4,7 @@ import '../styles/globals.css';
 import AnalyticsGoogle from '@/components/AnalyticsGoogle';
 import { Inter } from 'next/font/google';
 import clsx from 'clsx';
+import { ApolloWrapper } from '@/lib/graphql/apollo-wrapper';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -21,7 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={clsx('scroll-smooth', inter.variable)}>
 
-      <body className='relative '>{children}
+      <body className='relative '>
+        <ApolloWrapper>
+          {children}
+        </ApolloWrapper>
         <Analytics />
         <AnalyticsGoogle />
       </body>

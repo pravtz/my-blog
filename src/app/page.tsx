@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
 
-  const data: any = []
+  const dataTest: any = []
   const data1 = [
     {
       id: 'a001',
@@ -141,7 +141,7 @@ export default function Page() {
           className=" w-full h-[500px]"
         >
           <TitleMain title="Meus Projetos" />
-          <WrapperCardProjects data={data} />
+          <WrapperCardProjects/>
         </section>
 
       </main>

@@ -1,19 +1,47 @@
-
+'use client'
 import { CardProjetos } from '.'
 import { Carousel } from '../Carousel'
 import { CardProps } from '.'
 import Balancer from "react-wrap-balancer";
+import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
+import { gql } from '@apollo/client';
 
+export const dynamic = 'force-dynamic'
 
-
-type WrapperCardProjectsProps = {
-  data: CardProps[]
+type cardProjectProps = {
+  id: string
+  title: string
+  subtitle: string
+  slug: string
+  updateAt: string
+  coverImage: {url:string}
 }
-export const WrapperCardProjects = ({ data }: WrapperCardProjectsProps) => {
+
+type projectsType = {
+  projects: cardProjectProps[]
+}
+
+const query = gql`query {
+  projects {
+    id
+    title
+    subtitle
+    slug
+    updatedAt
+    coverImage {
+      url
+    }
+  }
+}`
+
+
+export const WrapperCardProjects = () => {
+const { data } = useSuspenseQuery<projectsType>(query)
+
   return (
     < div className='container relative m-auto w-full h-[350px] ' >
       <Carousel slidesToScroll='auto' containScroll='trimSnaps' loop>
-        {data.length != 0 ? data.map((item, index) => {
+        {data.projects.length != 0 || false ? data.projects.map((item, index) => {
           return (
             <div
               key={index}
@@ -24,9 +52,10 @@ export const WrapperCardProjects = ({ data }: WrapperCardProjectsProps) => {
                 title={item.title}
                 subtitle={item.subtitle}
                 navigate={{
-                  slug: item.navigate.slug
+                  slug: item.slug,
+                  query: {id: item.id}
                 }}
-                image={{ alt: item.image.alt, url: item.image.url }}
+                image={{ alt: item.title, url: item.coverImage.url }}
               />
             </div>
           )
