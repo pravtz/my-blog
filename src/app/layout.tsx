@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={clsx('scroll-smooth', inter.variable)}>
 
-      <body className='relative '>
+      <body className='relative bg-main-bg'>
         <ApolloWrapper>
           {children}
         </ApolloWrapper>

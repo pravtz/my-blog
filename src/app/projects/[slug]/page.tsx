@@ -1,4 +1,10 @@
+import { ScreenContentProject } from "@/components/ScreenContentProject";
+
 export default function Page({ params }: any) {
-  console.log(params)
-  return <div>My Post</div>;
+
+  return (
+    <div>
+      <ScreenContentProject slug={params.slug} />
+    </div>
+  )
 }

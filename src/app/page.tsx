@@ -109,7 +109,7 @@ export default function Page() {
 
   ]
   return (
-    <div className="relative bg-main-bg">
+    <div className="relative ">
       <div className=" bg-gradient-bg-top absolute top-0 h-screen w-full  z-auto " />
       <header className=" w-full ">
         <div className="bg-[#7D7C79] opacity-[0.18] w-full h-[200px] " />
