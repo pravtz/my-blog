@@ -10,6 +10,7 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+  weight:['200', '400', '500', '700']
 })
 
 export default function RootLayout({
@@ -20,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode,
 }) {
   return (
-    <html lang="en" className={clsx('scroll-smooth', inter.variable)}>
+    <html lang="en" className={clsx('scroll-smooth font-sans', inter.variable )}>
 
       <body className='relative bg-main-bg'>
         <ApolloWrapper>

@@ -3,7 +3,7 @@ import { CardProjetos } from '.'
 import { Carousel } from '../Carousel'
 import { CardProps } from '.'
 import Balancer from "react-wrap-balancer";
-import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
+import { useQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import { gql } from '@apollo/client';
 
 export const dynamic = 'force-dynamic'
@@ -36,12 +36,12 @@ const query = gql`query {
 
 
 export const WrapperCardProjects = () => {
-const { data } = useSuspenseQuery<projectsType>(query)
+const { data } = useQuery<projectsType>(query)
 
   return (
     < div className='container relative m-auto w-full h-[350px] ' >
       <Carousel slidesToScroll='auto' containScroll='trimSnaps' loop>
-        {data.projects.length != 0 || false ? data.projects.map((item, index) => {
+        {data?.projects.length != 0 || false ? data?.projects.map((item, index) => {
           return (
             <div
               key={index}
