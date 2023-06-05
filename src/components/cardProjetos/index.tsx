@@ -24,7 +24,7 @@ export const CardProjetos = ({ title, subtitle, image, navigate }: CardProps) =>
     <article className="p-2 m-2 rounded-[12px] flex flex-col w-[291px] border-[#5E5E5E] border-[0.2px]">
       <Link prefetch href={{
         pathname: `/projects/${encodeURIComponent(navigate.slug)}`,
-        query: { id: navigate.query?.id }
+        //query: { id: navigate.query?.id }
       }}
       >
         <>
