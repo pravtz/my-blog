@@ -6,6 +6,7 @@ import { RichText } from '@graphcms/rich-text-react-renderer';
 import { ElementNode } from '@graphcms/rich-text-types';
 import Link from "next/link";
 
+
 export const dynamic = 'force-dynamic'
 
 type ScreenContentProjectProps = {
@@ -83,7 +84,7 @@ export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
               p: ({ children }) => <p className="text-white/80 font-normal font-sans tracking-wide	">{children}</p>,
               blockquote: ({ children }) => (
                 <div className="ml-11 my-8 flex flex-row items-start h-full relative">
-                  <div className="w-6 h-full p-2 mx-2 text-4xl  bg-primary" >&#34;</div>
+                  <div className="w-6 h-full p-2 mx-2 text-4xl bg-primary" >&#34;</div>
                   <blockquote className=" leading-8 tracking-widest text-xl italic font-semibold">{children}</blockquote>
                 </div>
               ),
@@ -126,15 +127,15 @@ export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
                 );
               },
 
-              ul: ({ children }) => <ul className={'list-disc ml-8 my-4 decoration-primary list'}>{children}</ul>,
+              ul: ({ children }) => <ul className={' list-image-checkmark  ml-8 my-4 decoration-primary list'}>{children}</ul>,
               li: ({ children }) => <li className="ml-4">{children}</li>,
               ol: ({ children }) => <ol className="list-decimal ml-4 my-4">{children}</ol>,
-              table: ({ children }) => <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">{children}</table>,
-              table_head: ({ children }) => <thead className="text-md text-gray-700 uppercase  dark:bg-gray-700 dark:text-gray-400">{children}</thead>,
+              table: ({ children }) => <table className="w-full my-4 text-sm text-left text-primary/20 dark:text-primary/20">{children}</table>,
+              table_head: ({ children }) => <thead className="text-md text-primary/30 uppercase dark:text-primary/20">{children}</thead>,
               table_body: ({ children }) => <tbody>{children}</tbody>,
-              table_row: ({ children }) => <tr className=" border-b dark:bg-gray-800 dark:border-gray-700">{children}</tr>,
-              table_cell: ({ children }) => <td className="px-6 py-3">{children}</td>,
-              table_header_cell: ({ children }) => <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{children}</th>,
+              table_row: ({ children }) => <tr className="border-b border-y-primary/30 bg-primary/10 ">{children}</tr>,
+              table_cell: ({ children }) => <td className="px-6 py-3 border-x border-x-primary/10">{children}</td>,
+              table_header_cell: ({ children }) => <th className="px-6 py-4 font-medium text-white bg-primary/20 border border-primary/50 whitespace-nowrap dark:text-white">{children}</th>,
               italic: ({ children }) => <em>{children}</em>,
               bold: ({ children }) => <strong>{children}</strong>,
               underline: ({ children }) => <span className="underline ring-offset-2 ring-offset-emerald-700">{children}</span>,

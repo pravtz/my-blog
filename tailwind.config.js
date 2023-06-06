@@ -13,6 +13,9 @@ module.exports = {
         sans: ['var(--font-inter)']
         
       },
+      listStyleImage: {
+        checkmark: 'url("/corner-down-right.png")',
+      },
       colors: {
         'basic': '#bbbbbb',
         'basic-easy': '#848484',
