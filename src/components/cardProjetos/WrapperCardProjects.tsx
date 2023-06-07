@@ -5,6 +5,7 @@ import { CardProps } from '.'
 import Balancer from "react-wrap-balancer";
 import { useQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import { gql } from '@apollo/client';
+import { TagCardProject } from '../TagCardProject';
 
 export const dynamic = 'force-dynamic'
 
@@ -18,7 +19,7 @@ type cardProjectProps = {
 }
 
 type projectsType = {
-  projects: cardProjectProps[]
+  projects: (cardProjectProps & {tagParaOCard:string[]})[] 
 }
 
 const query = gql`query {
@@ -28,6 +29,7 @@ const query = gql`query {
     subtitle
     slug
     updatedAt
+    tagParaOCard
     coverImage {
       url
     }
@@ -47,16 +49,18 @@ const { data } = useQuery<projectsType>(query)
               key={index}
               className="m-auto overflow-hidden grow-0 shrink-0 flex justify-center basis-[100%] md:basis-1/2 lg:basis-1/3 min-w-0 pl-[2rem] xl:basis-1/4 "
             >
-              <CardProjetos
-                id={item.id}
-                title={item.title}
-                subtitle={item.subtitle}
-                navigate={{
-                  slug: item.slug,
-                  query: {id: item.id}
-                }}
-                image={{ alt: item.title, url: item.coverImage.url }}
-              />
+              <TagCardProject tags={item.tagParaOCard}>
+                <CardProjetos
+                  id={item.id}
+                  title={item.title}
+                  subtitle={item.subtitle}
+                  navigate={{
+                    slug: item.slug,
+                    query: {id: item.id}
+                  }}
+                  image={{ alt: item.title, url: item.coverImage.url }}
+                />
+              </TagCardProject>
             </div>
           )
         }) 
