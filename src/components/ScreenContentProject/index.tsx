@@ -30,8 +30,14 @@ type contentProjectType = {
       url: string
       height: number
       width: number
-    }
-
+    },
+    technologiesUsed: [
+      {
+        id: string
+        nameStack: string
+        description: string
+      }   
+    ]
   }
 }
 
@@ -45,7 +51,7 @@ const query = gql`query ($slug: String!) {
     contentText {
       raw
     }
-    date 
+    date
     introdution
     id
     coverImage {
@@ -53,8 +59,26 @@ const query = gql`query ($slug: String!) {
       height
       width
     }
+    technologiesUsed {
+      id
+      nameStack
+      description
+    }
+    categories {
+      description
+      id
+      nameCategory
+      backgroundColorCover {
+        hex
+      }
+      iconCategory {
+        id
+        url
+      }
+    }
   }
 }
+
 `
 
 export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
@@ -64,6 +88,16 @@ export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
     <div className="text-white container mx-auto">
       <div className="max-w-3xl mx-auto ">
         <div className="px-4 sm: p-0">
+          <div>
+            {data.project.technologiesUsed.map((item)=> {
+              return (
+
+              <div key={item.id} className="">
+                <p>{item.nameStack}</p>
+              </div>
+              )
+            })}
+          </div>
           <h1 className="font-bold font-sans text-5xl mt-11 mb-2">{data.project.title}</h1>
           <p className="font-thin font-sans text-3xl my-3">{data.project.subtitle}</p>
           <Image
@@ -73,6 +107,7 @@ export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
             height={data.project.coverImage.height}
           />
           <p className="my-2 text-lg font-light">{data.project.introdution}</p>
+
           <RichText
             content={data.project.contentText.raw}
             renderers={{
