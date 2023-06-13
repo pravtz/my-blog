@@ -5,6 +5,7 @@ import Image from "next/image";
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import { ElementNode } from '@graphcms/rich-text-types';
 import Link from "next/link";
+import clsx from "clsx";
 
 
 export const dynamic = 'force-dynamic'
@@ -37,7 +38,24 @@ type contentProjectType = {
         nameStack: string
         description: string
       }   
+    ],
+    categories: [
+      {
+        description: string,
+        id: string,
+        nameCategory: string,
+        backgroundColorCover:  {
+          hex: string
+        },
+        iconCategory: {
+          id: string
+          url: string
+        }
+
+      }
+
     ]
+
   }
 }
 
@@ -118,6 +136,23 @@ export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
             height={data.project.coverImage.height}
           />
           <p className="my-2 text-lg font-light">{data.project.introdution}</p>
+
+            {data.project.categories.length > 0 && <h3 className="tracking-wider leading-8 my-4 ml-4 text-primary/80 font-bold text-xl">Tecnilogias utilizadas nesse projeto</h3>}
+          
+          <div className="w-full rounded-lg p-4 bg-primary/20 flex flex-wrap gap-2">
+            {data.project.categories.map((item) => {
+              console.log(item.backgroundColorCover.hex)
+              
+              return (
+                <div key={item.id} className={clsx(item.backgroundColorCover.hex ? `bg-[${item.backgroundColorCover.hex}]` : "bg-white/20", "rounded-lg w-24") }>
+                  <div className="flex flex-col gap-2 items-center p-4">
+                    <Image width={40} height={40} src={item.iconCategory.url} alt={item.nameCategory}/>
+                    <p>{item.nameCategory}</p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
 
           <RichText
             content={data.project.contentText.raw}
