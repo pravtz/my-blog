@@ -84,21 +84,32 @@ const query = gql`query ($slug: String!) {
 export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
   const { data } = useSuspenseQuery<contentProjectType>(query, { variables: { slug: slug } })
 
+  const options: Intl.DateTimeFormatOptions = {
+    month: "long", 
+    day: "numeric", 
+    year: "numeric"
+  };
+
+  const dateProject = data.project.date
+  console.log(dateProject)
+  const dateFormated = new Intl.DateTimeFormat("pt-BR", options ).format( new Date(dateProject))
   return (
     <div className="text-white container mx-auto">
       <div className="max-w-3xl mx-auto ">
         <div className="px-4 sm: p-0">
+          <h1 className="font-bold font-sans text-5xl mt-11 mb-2">{data.project.title}</h1>
           <div>
             {data.project.technologiesUsed.map((item)=> {
               return (
 
-              <div key={item.id} className="">
+              <div key={item.id} className=" flex items-center gap-1">
                 <p>{item.nameStack}</p>
+                <p>|</p>
+                <p className=" text-xs">{dateFormated}</p>
               </div>
               )
             })}
           </div>
-          <h1 className="font-bold font-sans text-5xl mt-11 mb-2">{data.project.title}</h1>
           <p className="font-thin font-sans text-3xl my-3">{data.project.subtitle}</p>
           <Image
             src={data.project.coverImage.url}
