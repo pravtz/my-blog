@@ -1,11 +1,12 @@
 'use client'
-import { useSuspenseQuery, useQuery } from "@apollo/experimental-nextjs-app-support/ssr";
+import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import { gql } from '@apollo/client';
 import Image from "next/image";
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import { ElementNode } from '@graphcms/rich-text-types';
 import Link from "next/link";
 import clsx from "clsx";
+import { ToBackButton } from "../ToBackButton";
 
 
 export const dynamic = 'force-dynamic'
@@ -101,7 +102,6 @@ const query = gql`query ($slug: String!) {
 
 export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
   const { data } = useSuspenseQuery<contentProjectType>(query, { variables: { slug: slug } })
-
   const options: Intl.DateTimeFormatOptions = {
     month: "long", 
     day: "numeric", 
@@ -109,13 +109,15 @@ export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
   };
 
   const dateProject = data.project.date
-  console.log(dateProject)
+
   const dateFormated = new Intl.DateTimeFormat("pt-BR", options ).format( new Date(dateProject))
   return (
     <div className="text-white container mx-auto">
       <div className="max-w-3xl mx-auto ">
         <div className="px-4 sm: p-0">
-          <h1 className="font-bold font-sans text-5xl mt-11 mb-2">{data.project.title}</h1>
+          <ToBackButton />
+
+          <h1 className="font-bold font-sans text-5xl mt-8 mb-2">{data.project.title}</h1>
           <div>
             {data.project.technologiesUsed.map((item)=> {
               return (
@@ -137,12 +139,10 @@ export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
           />
           <p className="my-2 text-lg font-light">{data.project.introdution}</p>
 
-            {data.project.categories.length > 0 && <h3 className="tracking-wider leading-8 my-4 ml-4 text-primary/80 font-bold text-xl">Tecnilogias utilizadas nesse projeto</h3>}
+            {data.project.categories.length > 0 && <h3 className="tracking-wider leading-8 my-4 ml-4 text-primary/80 font-bold text-xl">Tecnologias utilizadas nesse projeto</h3>}
           
           <div className="w-full rounded-lg p-4 bg-primary/20 flex flex-wrap gap-2">
             {data.project.categories.map((item) => {
-              console.log(item.backgroundColorCover.hex)
-              
               return (
                 <div key={item.id} className={clsx(item.backgroundColorCover.hex ? `bg-[${item.backgroundColorCover.hex}]` : "bg-white/20", "rounded-lg w-24") }>
                   <div className="flex flex-col gap-2 items-center p-4">
