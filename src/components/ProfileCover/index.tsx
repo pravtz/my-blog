@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { SolcialMedia } from '@/components/SocialMedia'
-import clsx from 'clsx'
 import Avatar from '/public/avatar.png'
 
 export const ProfileCover = () => {
@@ -12,7 +11,7 @@ export const ProfileCover = () => {
       <h1 className='text-[32px] md:text-[52px]'><span className=' font-bold'>Ederson </span>Pravtz</h1>
       <p className=' text-base text-[#848484]'>Sou desenvolvedor de sistemas web</p>
 
-      <div className='py-4'>
+      <div className='py-4 z-10'>
         <SolcialMedia />
       </div>
     </div>
