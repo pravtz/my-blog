@@ -1,20 +1,10 @@
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import {
-  CaretRightIcon,
-  CheckIcon,
-  CropIcon,
-  EyeClosedIcon,
-  EyeOpenIcon,
   FileIcon,
-  FrameIcon,
-  GridIcon,
-  Link2Icon,
   MixerHorizontalIcon,
-  PersonIcon,
-  TransparencyGridIcon,
 } from "@radix-ui/react-icons";
 import { clsx } from "clsx";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from "react";
 
 
 interface RadixMenuItem {

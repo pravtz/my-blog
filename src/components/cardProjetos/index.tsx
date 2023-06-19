@@ -1,6 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import { BsHeartFill, BsHeart } from 'react-icons/bs'
 
 export type CardProps = {
   id: string

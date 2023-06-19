@@ -1,7 +1,6 @@
 'use client'
 import { CardProjetos } from '.'
 import { Carousel } from '../Carousel'
-import { CardProps } from '.'
 import Balancer from "react-wrap-balancer";
 import { useQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import { gql } from '@apollo/client';

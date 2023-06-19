@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { SolcialMedia } from '@/components/SocialMedia'
-import clsx from 'clsx'
 import Avatar from '/public/avatar.png'
 
 export const ProfileCover = () => {
