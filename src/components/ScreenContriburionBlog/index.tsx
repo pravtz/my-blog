@@ -16,11 +16,14 @@ type QueryType = {
   slug: string
   categories: [
     {
+      backgroundColorCover: {
+        hex: string
+      }
       id: string
       iconCategory: {
         url: string
       }
-    }
+    },
   ]
 }
 
@@ -31,6 +34,9 @@ const query = gql` query QueryAllContribuitions {
     subtitle
     slug
     categories {
+      backgroundColorCover{
+        hex
+      }
       id
       iconCategory {
         url
@@ -41,7 +47,7 @@ const query = gql` query QueryAllContribuitions {
 
 export const ScreenContriburionBlog = () => {
   const { data } = useQuery<DataQueryAllContribuitions>(query)
-  console.log(data)
+
 
   return (
     <div className="flex flex-col gap-4">
@@ -52,6 +58,8 @@ export const ScreenContriburionBlog = () => {
             title={item.title}
             subtitle={item.subtitle}
             urlImage={item.categories[0].iconCategory?.url}
+            backgoundImageColor={item.categories[0].backgroundColorCover.hex}
+            slug={item.slug}
           />
         )
 
