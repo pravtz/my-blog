@@ -143,6 +143,7 @@ export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
           
           <div className="w-full rounded-lg p-4 bg-primary/20 flex flex-wrap gap-2">
             {data.project.categories.map((item) => {
+              
               return (
                 <div key={item.id} className={clsx(item.backgroundColorCover.hex ? `bg-[${item.backgroundColorCover.hex}]` : "bg-white/20", "rounded-lg w-24") }>
                   <div className="flex flex-col gap-2 items-center p-4">
@@ -222,6 +223,8 @@ export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
               underline: ({ children }) => <span className="underline ring-offset-2 ring-offset-emerald-700">{children}</span>,
             }}
           />
+          <div dangerouslySetInnerHTML={{__html:data.project.bibliography.html}}/>
+
         </div>
       </div>
 
