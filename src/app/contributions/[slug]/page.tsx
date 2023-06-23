@@ -3,8 +3,7 @@ import { ScreenContentContribuition } from "@/components/ScreenContentContribuit
 export default function Contribution({ params }: any) {
   return (
     <section>
-     <ScreenContentContribuition slug={params.slug}/>
-     teste
+      <ScreenContentContribuition slug={params.slug} />
     </section>
   )
 }
