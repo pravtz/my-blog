@@ -5,6 +5,7 @@ import AnalyticsGoogle from '@/components/AnalyticsGoogle';
 import { Inter } from 'next/font/google';
 import clsx from 'clsx';
 import { ApolloWrapper } from '@/lib/graphql/apollo-wrapper';
+import { Metadata } from 'next';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -12,7 +13,12 @@ const inter = Inter({
   variable: '--font-inter',
   weight:['200', '400', '500', '700']
 })
-
+export const metadata: Metadata = {
+  title: {
+    template: '%s | Ederson Pravtz',
+    default: 'Blog Ederson Pravtz'
+  }
+}
 export default function RootLayout({
   // Layouts must accept a children prop.
   // This will be populated with nested layouts or pages

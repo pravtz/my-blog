@@ -8,7 +8,6 @@ import { ScreenContriburionBlog } from "@/components/ScreenContriburionBlog";
 import BalancerText from "react-wrap-balancer"
 
 export const metadata: Metadata = {
-  title: 'MyBlog | Pravtz',
   description: 'Blog e página pessoal de Ederson Pravtz',
 };
 
