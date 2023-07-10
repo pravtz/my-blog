@@ -11,7 +11,7 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
-  weight:['200', '400', '500', '700']
+  weight: ['200', '400', '500', '700']
 })
 export const metadata: Metadata = {
   title: {
@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode,
 }) {
   return (
-    <html lang="en" className={clsx('scroll-smooth font-sans', inter.variable )}>
+    <html lang="en" className={clsx('scroll-smooth font-sans', inter.variable)}>
 
       <body className='relative bg-main-bg'>
         <ApolloWrapper>

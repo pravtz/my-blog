@@ -9,39 +9,36 @@ type Props = {
 
 
 const dataMetadata = async (query: string, variable?: object) => {
-  try{
-  const headers = {
-    'content-type': 'application/json',
-    'Authorization': `Bearer ${process.env.HYGRAPH_PERMANENTAUTH_TOKEN}`
-  }
-  const requestBody = {
-   query: query,
-  }
-  if(variable !== undefined ) Object.assign(requestBody, {variables:variable} )
+  try {
+    const headers = {
+      'content-type': 'application/json',
+      'Authorization': `Bearer ${process.env.HYGRAPH_PERMANENTAUTH_TOKEN}`
+    }
+    const requestBody = {
+      query: query,
+    }
+    if (variable !== undefined) Object.assign(requestBody, { variables: variable })
 
-  console.log(requestBody)
-
-  const options = {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(requestBody)
-  };
+    const options = {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(requestBody)
+    };
 
     const urlData = process.env.NEXT_PUBLIC_KEY_GRAPHQL
-    if(urlData) {
-      const {data} = await ( await fetch(urlData, options )).json()
+    if (urlData) {
+      const { data } = await (await fetch(urlData, options)).json()
       return data
     }
-  } catch(err) {
+  } catch (err) {
     console.log('ERROR DURING FETCH REQUEST', err);
   }
 }
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
 
-  console.log(params, searchParams )
   const query = `query ($slug: String!) {
     project(where: {slug: $slug}) {
       title
@@ -49,17 +46,17 @@ export async function generateMetadata(
     }
   }`
 
-  const data = await dataMetadata(query, {slug: 'cli-bitcoin'})
-  console.log('RESPONSE FROM FETCH REQUEST', data);
+  const data = await dataMetadata(query, params)
+
   return {
     title: data?.project.title ?? "Pravtz",
-    description:`${data?.project.title}: ${data?.project.subtitle}` 
+    description: `${data?.project.title}: ${data?.project.subtitle}` ?? "Pravtz"
 
   }
 }
 
 export default function Page({ params }: any) {
-
+  console.log(params)
   return (
     <div className="z-2">
       <ScreenContentProject slug={params.slug} />
