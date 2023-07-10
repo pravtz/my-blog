@@ -1,4 +1,4 @@
-export const myHypergraphFetch = async (query: string, variable?: object) => {
+export const MyHypergraphFetch = async (query: string, variable?: object) => {
   try {
     const headers = {
       'content-type': 'application/json',
@@ -8,8 +8,6 @@ export const myHypergraphFetch = async (query: string, variable?: object) => {
       query: query,
     }
     if (variable !== undefined) Object.assign(requestBody, { variables: variable })
-
-    console.log(requestBody)
 
     const options = {
       method: 'POST',

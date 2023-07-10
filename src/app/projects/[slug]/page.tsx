@@ -1,39 +1,12 @@
 import { ScreenContentProject } from "@/components/ScreenContentProject";
 import { ResolvingMetadata, Metadata } from "next";
+import {MyHypergraphFetch} from '@/services/my.hypegraph'
 
 type Props = {
   params: { id: string }
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
-
-
-const dataMetadata = async (query: string, variable?: object) => {
-  try {
-    const headers = {
-      'content-type': 'application/json',
-      'Authorization': `Bearer ${process.env.HYGRAPH_PERMANENTAUTH_TOKEN}`
-    }
-    const requestBody = {
-      query: query,
-    }
-    if (variable !== undefined) Object.assign(requestBody, { variables: variable })
-
-    const options = {
-      method: 'POST',
-      headers,
-      body: JSON.stringify(requestBody)
-    };
-
-    const urlData = process.env.NEXT_PUBLIC_KEY_GRAPHQL
-    if (urlData) {
-      const { data } = await (await fetch(urlData, options)).json()
-      return data
-    }
-  } catch (err) {
-    console.log('ERROR DURING FETCH REQUEST', err);
-  }
-}
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
@@ -43,20 +16,53 @@ export async function generateMetadata(
     project(where: {slug: $slug}) {
       title
       subtitle
+      slug
+      date
+      coverImage {
+        url
+        height
+        width
+      }
     }
   }`
 
-  const data = await dataMetadata(query, params)
+  const data = await MyHypergraphFetch(query, params)
+  const previousImages = (await parent).openGraph?.images || []
 
   return {
     title: data?.project.title ?? "Pravtz",
-    description: `${data?.project.title}: ${data?.project.subtitle}` ?? "Pravtz"
+    description: `${data?.project.title}: ${data?.project.subtitle}` ?? "Pravtz",
 
+    openGraph:{
+      title: data?.project.title,
+      description: `${data?.project.title}: ${data?.project.subtitle}`,
+      siteName: 'Pravtz',
+      url: `http://pravtz.dev.br/project/${data?.project.slug}`,
+      images: [
+        {
+          url: data.project.coverImage.url,
+          height: data.project.coverImage.height,
+          width:  data.project.coverImage.wedth,
+          alt: `imagem principal do ${data?.project.title}`
+        },
+        ...previousImages
+      ],
+      locale: 'pt-BR',
+      type: 'website'
+    },
+    twitter:{
+      card: "summary_large_image",
+      title: data?.project.title,
+      description: data?.project.subtitle,
+      creator: '@pravtz',
+      images: [data.project.coverImage.url]
+    },
+    
   }
 }
 
+
 export default function Page({ params }: any) {
-  console.log(params)
   return (
     <div className="z-2">
       <ScreenContentProject slug={params.slug} />
