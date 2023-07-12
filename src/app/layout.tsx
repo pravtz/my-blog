@@ -29,9 +29,10 @@ export const metadata: Metadata = {
   }],
   applicationName: 'Ederson Pravtz',
   generator: 'Next.js',
-  keywords:['pravtz', 'desenvolvedor front-end', 'Ederson Pravtz', 'portifilio web'],
+  keywords: ['pravtz', 'desenvolvedor front-end', 'Ederson Pravtz', 'portifilio web'],
   publisher: 'Ederson Pravtz',
   colorScheme: 'dark',
+  metadataBase: new URL("https://pravtz.dev.br"),
 
   robots: {
     index: true,

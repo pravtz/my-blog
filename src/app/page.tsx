@@ -63,7 +63,6 @@ export default function Page() {
           <p className="text-xs text-white/10 text-center">Desenvolvido por mim <span className="underline ring-offset-2">Ederson Pravtz</span></p>
         </footer>
 
-
       </main>
     </div>
   )

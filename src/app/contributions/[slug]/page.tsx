@@ -2,6 +2,7 @@ import { ScreenContentContribuition } from "@/components/ScreenContentContribuit
 import { MyHypergraphFetch } from "@/services/my.hypegraph"
 import { ResolvingMetadata, Metadata } from "next";
 
+
 type Props = {
   params: { id: string }
   searchParams: { [key: string]: string | string[] | undefined }
@@ -28,14 +29,19 @@ export async function generateMetadata(
   }`
 
   const data = await MyHypergraphFetch(query, params)
+  if (!data)
+    return {
+      title: "Not Found",
+      description: "The page you are looking for does not exist.",
+    };
 
   const previousImages = (await parent).openGraph?.images || []
   return {
     title: data?.contribution.title ?? "Pravtz",
     description: `${data?.contribution.title}: ${data?.contribution.subtitle}` ?? "Pravtz",
-    
 
-    openGraph:{
+
+    openGraph: {
       title: data?.contribution.title,
       description: `${data?.contribution.title}: ${data?.contribution.subtitle}`,
       siteName: 'Pravtz',
@@ -44,7 +50,7 @@ export async function generateMetadata(
         {
           url: data?.contribution.categories[0].iconCategory.url,
           height: data?.contribution.categories[0].iconCategory.height,
-          width:  data?.contribution.categories[0].iconCategory.wedth,
+          width: data?.contribution.categories[0].iconCategory.wedth,
           alt: `imagem principal do ${data?.contribution.title}`
         },
         ...previousImages
@@ -52,14 +58,14 @@ export async function generateMetadata(
       locale: 'pt-BR',
       type: 'website'
     },
-    twitter:{
+    twitter: {
       card: "summary_large_image",
       title: data?.contribution.title,
       description: data?.contribution.subtitle,
       creator: '@pravtz',
       images: [data?.contribution.categories[0].iconCategory.url]
     },
-    
+
   }
 }
 

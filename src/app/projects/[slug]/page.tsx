@@ -1,6 +1,6 @@
 import { ScreenContentProject } from "@/components/ScreenContentProject";
 import { ResolvingMetadata, Metadata } from "next";
-import {MyHypergraphFetch} from '@/services/my.hypegraph'
+import { MyHypergraphFetch } from '@/services/my.hypegraph'
 
 type Props = {
   params: { id: string }
@@ -32,8 +32,11 @@ export async function generateMetadata(
   return {
     title: data?.project.title ?? "Pravtz",
     description: `${data?.project.title}: ${data?.project.subtitle}` ?? "Pravtz",
+    alternates: {
+      canonical: `/project/${data?.project.slug}`
+    },
 
-    openGraph:{
+    openGraph: {
       title: data?.project.title,
       description: `${data?.project.title}: ${data?.project.subtitle}`,
       siteName: 'Pravtz',
@@ -42,7 +45,7 @@ export async function generateMetadata(
         {
           url: data.project.coverImage.url,
           height: data.project.coverImage.height,
-          width:  data.project.coverImage.wedth,
+          width: data.project.coverImage.wedth,
           alt: `imagem principal do ${data?.project.title}`
         },
         ...previousImages
@@ -50,14 +53,14 @@ export async function generateMetadata(
       locale: 'pt-BR',
       type: 'website'
     },
-    twitter:{
+    twitter: {
       card: "summary_large_image",
       title: data?.project.title,
       description: data?.project.subtitle,
       creator: '@pravtz',
       images: [data.project.coverImage.url]
     },
-    
+
   }
 }
 
