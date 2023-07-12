@@ -8,7 +8,6 @@ import { ScreenContriburionBlog } from "@/components/ScreenContriburionBlog";
 import BalancerText from "react-wrap-balancer"
 
 export const metadata: Metadata = {
-  title: 'MyBlog | Pravtz',
   description: 'Blog e página pessoal de Ederson Pravtz',
 };
 
@@ -63,7 +62,6 @@ export default function Page() {
         <footer className="py-4">
           <p className="text-xs text-white/10 text-center">Desenvolvido por mim <span className="underline ring-offset-2">Ederson Pravtz</span></p>
         </footer>
-
 
       </main>
     </div>

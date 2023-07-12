@@ -105,13 +105,14 @@ const query = gql`query ($slug: String!) {
 
 export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
   const { data } = useSuspenseQuery<contentProjectType>(query, { variables: { slug: slug } })
+  console.log('datadata', data.project.bibliography.raw)
   const options: Intl.DateTimeFormatOptions = {
     month: "long",
     day: "numeric",
     year: "numeric"
   };
 
-  const dateProject = data.project.date
+  const dateProject = data?.project.date
 
   const dateFormated = new Intl.DateTimeFormat("pt-BR", options).format(new Date(dateProject))
   return (
@@ -156,9 +157,9 @@ export const ScreenContentProject = ({ slug }: ScreenContentProjectProps) => {
               )
             })}
           </div>
-          <RichTextRender raw={data.project.contentText.raw} />
+          <RichTextRender raw={data.project.contentText.raw} key={1} />
           <div className="my-8">
-            <RichTextRender raw={data.project.bibliography.raw} />
+            {/* <RichTextRender raw={data.project.bibliography.raw} key={2} /> */}
           </div>
         </div>
       </div>
